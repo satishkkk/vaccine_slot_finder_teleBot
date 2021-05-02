@@ -120,7 +120,13 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.text, get_pincode))  # if the user sends text
     dispatcher.add_error_handler(error)
 
-    updater.start_polling()
+    # Start the Bot
+    updater.start_webhook(listen="0.0.0.0",
+                          port=PORT,
+                          url_path=TOKEN)
+    # updater.bot.set_webhook(url=settings.WEBHOOK_URL)
+    updater.bot.set_webhook("https://cowinbot.herokuapp.com/" + TOKEN)
+    # updater.start_polling()
     getVaccineData()
     updater.idle()
 

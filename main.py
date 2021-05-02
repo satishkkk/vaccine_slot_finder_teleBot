@@ -2,14 +2,19 @@ import configparser as cfg
 import json
 import logging
 import time
-import demoji
+import datetime
 import requests
 from requests import HTTPError
 from telegram import *;
 from telegram.ext import *;
+#
+# logging.basicConfig(filename="Log.log", format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+#                     # take time,level,name
+#                     level=logging.INFO)
 
-logging.basicConfig(filename="Log.log", format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+logging.basicConfig( format='[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
                     # take time,level,name
+                    datefmt="%d/%b/%Y %H:%M:%S",
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -38,7 +43,8 @@ def validate_pin(pin):
 def get_pincode(update, context: CallbackContext):
     pincode = update.message.text.encode()
     if(validate_pin(pincode)):
-        reply = "You entered {} , we will notify you once we found slot for you.".format(pincode.decode())
+        pincode = pincode.decode()
+        reply = "You entered {} , we will notify you once we found slot for you.".format(pincode)
         logger.info("%s entered %s , pincode", update.message.from_user.first_name, pincode)
 
         if pincode in pincode_user_map:  # pin code exist
@@ -48,8 +54,9 @@ def get_pincode(update, context: CallbackContext):
 
         bot.send_message(chat_id=update.message.chat_id, text=reply)
     else:
-        logger.info("%s entered %s , pincode", update.message.from_user.first_name, pincode)
+        logger.info("%s entered %s , pincode", update.message.from_user.first_name, pincode.decode())
         bot.send_message(chat_id=update.message.chat_id, text="Thanks "+update.message.from_user.first_name+" , we are expecting valid pin code")
+    logger.info("pincode_user_map size: %s ", len(pincode_user_map))
 
 
 def error(update, context: CallbackContext):
@@ -57,28 +64,38 @@ def error(update, context: CallbackContext):
 
 
 def getVaccineData():
+
     while True:
-        for pincode in pincode_user_map:
-            logger.info("Fetching data for pincode: %s", pincode)
-            out = fetchData(pincode, 'dummydate')
-            if (out != "No Slots"):
-                for user in pincode_user_map[pincode]:
-                    bot.send_message(user, text="Response : " + out)
-            time.sleep(60)
+        try:
+            for pincode in pincode_user_map.copy():
+                date = datetime.datetime.now()
+                for i in range(10):
+                    date += datetime.timedelta(days=1)
+                    formated_date = date.strftime("%d-%m-%y")
+                    logger.info("Fetching data for pincode: %s and date %s", pincode,formated_date)
+                    out = fetchData(pincode, formated_date)
+                    if (out != "No Slots"):
+                        for user in pincode_user_map[pincode]:
+                            bot.send_message(user, text="Response : " + out)
+                    else:
+                        logger.info("No slots found for pincode: %s and %s ", pincode, formated_date)
+                time.sleep(120) # sleep for 2 min after finding  each pin code
+        except Exception as err:
+            print(f'Other error occurred: {err}')
 
 def fetchData(pincode, date):
-    date = '02-05-2021'
-    url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=' + pincode + '&date=' + date
+    url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=' + str(pincode) + '&date=' + str(date)
     headers = {
         'accept': 'application/json', 'Accept-Language': 'hi_IN',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     try:
+        logger.info("url : %s ", url)
         response = requests.get(url, headers=headers)
         if (response.status_code == 200):
             jsonResponse = response.json()
-            logger.info("Fetching data for pincode: %s", pincode)
             logger.info("Response: %s", jsonResponse)
             if (len(jsonResponse['sessions']) != 0):
+                logger.info("Slot found for pincode %s",pincode)
                 return json.dump(jsonResponse)
             else:
                 return "No Slots"
@@ -103,9 +120,6 @@ def main():
 
     updater.start_polling()
     getVaccineData()
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
 

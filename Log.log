@@ -1,0 +1,97 @@
+2021-05-02 22:21:49,171 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 22:21:50,092 - __main__ - INFO - 1011559221 entered D , pincode
+2021-05-02 22:21:50,107 - __main__ - INFO - Fetching data for pincode: D
+2021-05-02 22:21:53,687 - __main__ - INFO - 1011559221 entered Kya hua , pincode
+2021-05-02 22:21:58,547 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-02 22:22:00,629 - __main__ - INFO - 1011559221 entered 401202 , pincode
+2021-05-02 22:22:03,135 - __main__ - INFO - 504002672 entered 401202 , pincode
+2021-05-02 22:22:19,854 - __main__ - INFO - 1011559221 entered 401202 , pincode
+2021-05-02 22:22:35,616 - __main__ - INFO - 1011559221 entered Vaccine khatam? , pincode
+2021-05-02 22:22:51,385 - __main__ - INFO - 1011559221 entered 400001 , pincode
+2021-05-02 22:24:23,966 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 22:24:31,773 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-02 22:26:30,446 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 22:26:38,677 - __main__ - INFO - 504002672 entered Ddf , pincode
+2021-05-02 22:26:38,677 - __main__ - INFO - Fetching data for pincode: Ddf
+2021-05-02 22:26:40,864 - __main__ - INFO - 504002672 entered Gh , pincode
+2021-05-02 22:31:41,350 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 22:31:58,634 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-02 22:32:03,771 - __main__ - INFO - Satish entered 401202 , pincode
+2021-05-02 22:32:03,772 - __main__ - INFO - Fetching data for pincode: 401202
+2021-05-02 22:32:03,906 - __main__ - INFO - Fetching data for pincode: 401202
+2021-05-02 22:32:03,906 - __main__ - INFO - Response: {'sessions': []}
+2021-05-02 22:32:15,349 - __main__ - INFO - Satish entered Hdhd , pincode
+2021-05-02 22:32:54,258 - __main__ - INFO - CP entered 401202 , pincode
+2021-05-02 22:32:59,827 - __main__ - INFO - CP entered Yes , pincode
+2021-05-02 22:33:42,960 - __main__ - INFO - CP entered 401202 , pincode
+2021-05-02 22:33:59,795 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-02 22:34:01,845 - __main__ - INFO - Satish entered 401202 , pincode
+2021-05-02 22:34:05,852 - __main__ - INFO - Satish entered Hdhdh , pincode
+2021-05-02 22:35:01,597 - __main__ - INFO - Satish entered Ushdhd , pincode
+2021-05-02 22:37:38,774 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 22:40:05,559 - __main__ - INFO - Ankita entered 400051 , pincode
+2021-05-02 22:40:05,559 - __main__ - INFO - Fetching data for pincode: 400051
+2021-05-02 22:40:05,791 - __main__ - INFO - Fetching data for pincode: 400051
+2021-05-02 22:40:05,791 - __main__ - INFO - Response: {'sessions': []}
+2021-05-02 22:48:31,278 - __main__ - INFO - User name: Amitoj , CHAT ID: 1362736210
+2021-05-02 22:48:37,191 - __main__ - INFO - Amitoj entered 400078 , pincode
+2021-05-02 22:49:05,877 - __main__ - INFO - Amitoj entered ?? , pincode
+
+2021-05-02 22:54:42,082 - __main__ - INFO - User name: Parth , CHAT ID: 657750978
+2021-05-02 22:54:51,150 - __main__ - INFO - Parth entered 400067 , pincode
+2021-05-02 22:55:02,786 - __main__ - INFO - User name: Parth , CHAT ID: 657750978
+2021-05-02 22:55:10,035 - __main__ - INFO - Parth entered 400067 , pincode
+2021-05-02 23:48:02,217 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 23:48:21,714 - __main__ - INFO - Satish entered Hey , pincode
+2021-05-02 23:48:25,761 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-02 23:50:29,494 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 23:50:35,072 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-02 23:50:37,671 - __main__ - INFO - Satish entered b'Hshs' , pincode
+2021-05-02 23:50:39,817 - __main__ - INFO - Satish entered b'\xf0\x9f\x98\x8d' , pincode
+2021-05-02 23:50:48,207 - __main__ - INFO - Satish entered b'\xe2\x9d\xa4\xef\xb8\x8f' , pincode
+2021-05-02 23:51:58,189 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 23:52:04,600 - __main__ - INFO - Satish entered b'\xf0\x9f\x98\x8d' , pincode
+2021-05-02 23:52:09,838 - __main__ - INFO - Satish entered b'Gdgd' , pincode
+2021-05-02 23:52:14,437 - __main__ - INFO - Satish entered b'45454545' , pincode
+2021-05-02 23:52:17,886 - __main__ - INFO - Satish entered b'4444' , pincode
+2021-05-02 23:52:17,887 - __main__ - INFO - Fetching data for pincode: b'4444'
+2021-05-02 23:52:40,513 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 23:52:42,922 - __main__ - INFO - Satish entered b'Bzbz' , pincode
+2021-05-02 23:52:46,362 - __main__ - INFO - Satish entered b'4444' , pincode
+2021-05-02 23:52:50,795 - __main__ - INFO - Satish entered b'55556' , pincode
+2021-05-02 23:52:53,736 - __main__ - INFO - Satish entered b'666666' , pincode
+2021-05-02 23:52:53,736 - __main__ - INFO - Fetching data for pincode: b'666666'
+2021-05-02 23:53:28,036 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 23:53:31,969 - __main__ - INFO - Satish entered b'-"-"' , pincode
+2021-05-02 23:53:37,759 - __main__ - INFO - Satish entered b'556666' , pincode
+2021-05-02 23:53:37,759 - __main__ - INFO - Fetching data for pincode: b'556666'
+2021-05-02 23:54:15,304 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 23:54:17,732 - __main__ - INFO - Satish entered b'Bxbx' , pincode
+2021-05-02 23:54:23,618 - __main__ - INFO - Satish entered b'454545' , pincode
+2021-05-02 23:54:23,635 - __main__ - INFO - Fetching data for pincode: b'454545'
+2021-05-02 23:54:35,981 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-02 23:54:38,582 - __main__ - INFO - Satish entered b'Bxb' , pincode
+2021-05-02 23:54:42,144 - __main__ - INFO - Satish entered b'565656' , pincode
+2021-05-02 23:54:42,144 - __main__ - INFO - Fetching data for pincode: b'565656'
+2021-05-02 23:56:08,143 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-02 23:56:12,940 - __main__ - INFO - Satish entered b'401202' , pincode
+2021-05-03 00:05:58,380 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-03 00:06:02,028 - __main__ - INFO - Satish entered b'401202' , pincode
+2021-05-03 00:34:53,538 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-03 00:35:13,422 - __main__ - INFO - Satish entered b'Hi' , pincode
+2021-05-03 00:35:18,483 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-03 00:35:22,811 - __main__ - INFO - Satish entered b'401202' , pincode
+2021-05-03 00:35:22,811 - __main__ - INFO - Fetching data for pincode: b'401202' and date 03-05-21
+2021-05-03 00:36:23,228 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-03 00:36:28,292 - __main__ - INFO - User name: Satish , CHAT ID: 504002672
+2021-05-03 00:36:31,238 - __main__ - INFO - Satish entered b'Lala' , pincode
+2021-05-03 00:36:35,186 - __main__ - INFO - Satish entered b'401202' , pincode
+2021-05-03 00:36:35,202 - __main__ - INFO - Fetching data for pincode: b'401202' and date 03-05-21
+2021-05-03 00:37:35,078 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-03 00:37:37,638 - __main__ - INFO - Satish entered b'Hz' , pincode
+2021-05-03 00:37:42,194 - __main__ - INFO - Satish entered b'123456' , pincode
+2021-05-03 00:37:42,195 - __main__ - INFO - Fetching data for pincode: b'123456' and date 03-05-21
+2021-05-03 00:38:13,481 - apscheduler.scheduler - INFO - Scheduler started
+2021-05-03 00:38:17,283 - __main__ - INFO - Satish entered b'Js' , pincode
+2021-05-03 00:38:18,173 - __main__ - INFO - Satish entered b'Bxb' , pincode
+2021-05-03 00:38:29,355 - __main__ - INFO - Satish entered b'Ccdx' , pincode

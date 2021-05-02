@@ -7,6 +7,7 @@ import requests
 from requests import HTTPError
 from telegram import *;
 from telegram.ext import *;
+import os;
 #
 # logging.basicConfig(filename="Log.log", format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 #                     # take time,level,name
@@ -24,7 +25,7 @@ def read_token_from_config_file(config):
     parser.read(config)
     return parser.get('creds', 'token')
 
-
+PORT = int(os.environ.get('PORT', '8443'))
 token = read_token_from_config_file('config.cfg')
 bot = Bot(token)
 pincode_user_map = {}
@@ -108,8 +109,9 @@ def fetchData(pincode, date):
 def main():
     print("Bot Started")
 
+    TOKEN =read_token_from_config_file('config.cfg')
     # Create the Updater and pass it your bot's token.
-    updater = Updater(read_token_from_config_file('config.cfg'), use_context=True)
+    updater = Updater(TOKEN, use_context=True)
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
@@ -118,7 +120,13 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.text, get_pincode))  # if the user sends text
     dispatcher.add_error_handler(error)
 
-    updater.start_polling()
+    # Start the Bot
+    updater.start_webhook(listen="0.0.0.0",
+                          port=PORT,
+                          url_path=TOKEN)
+    # updater.bot.set_webhook(url=settings.WEBHOOK_URL)
+    updater.bot.set_webhook("https://cowinbot.herokuapp.com/" + TOKEN)
+    # updater.start_polling()
     getVaccineData()
     updater.idle()
 

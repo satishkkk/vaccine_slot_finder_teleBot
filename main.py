@@ -25,7 +25,6 @@ def read_token_from_config_file(config):
     parser.read(config)
     return parser.get('creds', 'token')
 
-PORT = int(os.environ.get('PORT', '8443'))
 token = read_token_from_config_file('config.cfg')
 bot = Bot(token)
 pincode_user_map = {}
@@ -120,13 +119,7 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.text, get_pincode))  # if the user sends text
     dispatcher.add_error_handler(error)
 
-    # Start the Bot
-    updater.start_webhook(listen="0.0.0.0",
-                          port=PORT,
-                          url_path=TOKEN)
-    # updater.bot.set_webhook(url=settings.WEBHOOK_URL)
-    updater.bot.set_webhook("https://cowinbot.herokuapp.com/" + TOKEN)
-    # updater.start_polling()
+    updater.start_polling()
     getVaccineData()
     updater.idle()
 

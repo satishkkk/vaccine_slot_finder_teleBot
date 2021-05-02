@@ -2,7 +2,7 @@ import configparser as cfg
 import json
 import logging
 import time
-
+import demoji
 import requests
 from requests import HTTPError
 from telegram import *;
@@ -32,17 +32,24 @@ def start(update, context: CallbackContext):
     reply = "Hi!! {} , add your pincode".format(name)
     bot.send_message(chat_id=update.message.chat_id, text=reply)  # sending messag
 
+def validate_pin(pin):
+    return len(pin)==6 and pin.isdigit()
 
 def get_pincode(update, context: CallbackContext):
-    pincode = update.message.text
-    reply = "You entered {} , pincode".format(pincode)
-    logger.info("%s entered %s , pincode", update.message.chat_id, pincode)
-    if pincode in pincode_user_map:  # pin code exist
-        pincode_user_map[pincode].append(update.message.chat_id)
-    else:  # add new pin code
-        pincode_user_map[pincode] = update.message.chat_id
+    pincode = update.message.text.encode()
+    if(validate_pin(pincode)):
+        reply = "You entered {} , we will notify you once we found slot for you.".format(pincode.decode())
+        logger.info("%s entered %s , pincode", update.message.from_user.first_name, pincode)
 
-    bot.send_message(chat_id=update.message.chat_id, text=reply)
+        if pincode in pincode_user_map:  # pin code exist
+            pincode_user_map[pincode].append(update.message.chat_id)
+        else:  # add new pin code
+            pincode_user_map[pincode] = [update.message.chat_id]
+
+        bot.send_message(chat_id=update.message.chat_id, text=reply)
+    else:
+        logger.info("%s entered %s , pincode", update.message.from_user.first_name, pincode)
+        bot.send_message(chat_id=update.message.chat_id, text="Thanks "+update.message.from_user.first_name+" , we are expecting valid pin code")
 
 
 def error(update, context: CallbackContext):
@@ -57,8 +64,7 @@ def getVaccineData():
             if (out != "No Slots"):
                 for user in pincode_user_map[pincode]:
                     bot.send_message(user, text="Response : " + out)
-            time.sleep(600)
-
+            time.sleep(60)
 
 def fetchData(pincode, date):
     date = '02-05-2021'

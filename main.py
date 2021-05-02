@@ -122,10 +122,11 @@ def main():
 
     # Start the Bot
     updater.start_webhook(listen="0.0.0.0",
-                          port=PORT,
-                          url_path=TOKEN)
+                          port=int(PORT),
+                          url_path=TOKEN,
+                          webhook_url='https://vaccine-finder-bot.herokuapp.com/'+TOKEN)
     # updater.bot.set_webhook(url=settings.WEBHOOK_URL)
-    updater.bot.set_webhook("https://cowinbot.herokuapp.com/" + TOKEN)
+    # updater.bot.set_webhook("https://vaccine-finder-bot.herokuapp.com/ " + TOKEN)
     # updater.start_polling()
     getVaccineData()
     updater.idle()

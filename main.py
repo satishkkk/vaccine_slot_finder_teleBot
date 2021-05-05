@@ -9,6 +9,10 @@ from requests import HTTPError
 from telegram import *;
 from telegram.ext import *;
 
+from pincode_user_dao import insertUserToPincode as insertUserToPincode;
+from pincode_user_dao import retriveAllPincode as retriveAllPincode;
+from pincode_user_dao import retriveAllUserBasedOnPincode as retriveAllUserBasedOnPincode;
+
 logging.basicConfig(filename="Log.log",
                     format='[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
                     # take time,level,name
@@ -25,7 +29,6 @@ def read_token_from_config_file(config):
 
 token = read_token_from_config_file('config.cfg')
 bot = Bot(token)
-pincode_user_map = {}
 
 
 def start(update, context: CallbackContext):
@@ -44,20 +47,15 @@ def get_pincode(update, context: CallbackContext):
     pincode = update.message.text.encode()
     if (validate_pin(pincode)):
         pincode = pincode.decode()
+        insertUserToPincode(pincode, update.message.chat_id, update.message.from_user.first_name)
         reply = "You entered {} , we will notify you once we found slot for you.".format(pincode)
         logger.info("%s entered %s , pincode", update.message.from_user.first_name, pincode)
-
-        if pincode in pincode_user_map:  # pin code exist
-            pincode_user_map[pincode].append(update.message.chat_id)
-        else:  # add new pin code
-            pincode_user_map[pincode] = [update.message.chat_id]
-
         bot.send_message(chat_id=update.message.chat_id, text=reply)
     else:
-        logger.info("%s entered %s , pincode", update.message.from_user.first_name, pincode.decode())
+        logger.info("%s %s entered %s , pincode", update.message.chat_id, update.message.from_user.first_name,
+                    pincode.decode())
         bot.send_message(chat_id=update.message.chat_id,
                          text="Thanks " + update.message.from_user.first_name + " , we are expecting valid pin code")
-    logger.info("pincode_user_map size: %s ", len(pincode_user_map))
 
 
 def error(update, context: CallbackContext):
@@ -65,9 +63,11 @@ def error(update, context: CallbackContext):
 
 
 def getVaccineData():
+    listpincode = retriveAllPincode()
+    logger.info("Pincode size: %s ", len(listpincode))
     while True:
         try:
-            for pincode in pincode_user_map.copy():
+            for pincode in listpincode.copy():
                 date = datetime.datetime.now()
                 for i in range(10):
                     date += datetime.timedelta(days=1)
@@ -75,7 +75,8 @@ def getVaccineData():
                     logger.info("Fetching data for pincode: %s and date %s", pincode, formated_date)
                     out = fetchData(pincode, formated_date)
                     if (out != "No Slots"):
-                        for user in pincode_user_map[pincode]:
+                        listUserForPincode = retriveAllUserBasedOnPincode(pincode)
+                        for user in listUserForPincode:
                             bot.send_message(user, text="Response : " + out)
                     else:
                         logger.info("No slots found for pincode: %s and %s ", pincode, formated_date)
